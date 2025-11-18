@@ -1,46 +1,87 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'helvetica neue';
-    color: #fff;
-}
-html,
-body {
-    height: 100%;
-    width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'helvetica neue';
 }
 
-main{
+html,
+body {
   height: 100%;
   width: 100%;
-  background-color: #111;
+}
+
+body {
+  overflow: hidden;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  flex-direction: column;
 }
 
-h1{
-  font-size: 70px;
-  background-color: lightseagreen;
-  padding: 40px 50px;
-  border-radius: 10px;
-  font-family: monospace;
+.card p{
+  text-align: center;
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: 500;
 }
-
-button{
-  padding: 20px 30px;
-  background-color: papayawhip;
-  border: none;
-  border-radius: 5px;
+.card p span{
   font-weight: 600;
-  cursor: pointer;
-  border-radius: 20%;
-  color: #111;
+  color: lightseagreen;
+}
+.card {
+  width: 600px;
+  height: 400px;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  padding: 50px ;
 }
 
-button:active{
+.outer {
+  height: 20px;
+  border-radius: 50px;
+  margin-top: 40px;
+  width: 100%;
+  background-color: rgb(184, 184, 184);
+}
+
+
+.inner {
+  height: 100%;
+  width: 0%;
+  border-radius: 50px;
+  background-color: tomato;
+}
+
+.bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.bottom h2{
+  font-size: 60px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bottom button{
+  padding: 12px 25px;
+  background-color: tomato;
+  color: white;
+  border-radius: 5px;
+  font-size: 18px;
+
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+}
+
+.bottom button:active{
   scale: 0.95;
 }
