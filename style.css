@@ -1,87 +1,22 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'helvetica neue';
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  overflow: hidden;
-}
-
-main {
-  height: 100%;
-  width: 100%;
-  background-color: black;
+body{
+  height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* margin: 0; */
+  /* background: radial-g radient(circle 700px at var(--x) var(--y) , antiqueWhite, red); */
 }
 
-.card p{
-  text-align: center;
-  margin-top: 40px;
-  font-size: 20px;
-  font-weight: 500;
-}
-.card p span{
-  font-weight: 600;
-  color: lightseagreen;
-}
-.card {
-  width: 600px;
-  height: 400px;
-  background-color: antiquewhite;
-  border-radius: 10px;
-  padding: 50px ;
+:root{
+  --x: 50%;
+  --y: 50%;
 }
 
-.outer {
-  height: 20px;
-  border-radius: 50px;
-  margin-top: 40px;
-  width: 100%;
-  background-color: rgb(184, 184, 184);
-}
-
-
-.inner {
-  height: 100%;
-  width: 0%;
-  border-radius: 50px;
-  background-color: tomato;
-}
-
-.bottom{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 40px;
-}
-
-.bottom h2{
-  font-size: 60px;
+h1{
   font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 100px;
+  color: red;
 }
 
-.bottom button{
-  padding: 12px 25px;
-  background-color: tomato;
-  color: white;
-  border-radius: 5px;
-  font-size: 18px;
-
-  font-weight: 600;
-  border: 0;
-  cursor: pointer;
-}
-
-.bottom button:active{
-  scale: 0.95;
-}

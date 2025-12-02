@@ -1,23 +1,39 @@
-const btn = document.querySelector('button')
-const progressBar = document.querySelector('.inner')
-const progText = document.querySelector('h2')
-const displayText = document.querySelector('#text')
-let progress = 0
+addEventListener('mousemove', (e) => {
+    // console.log(e.x, e.y);
 
-btn.addEventListener('click', () => {
-    btn.style.pointerEvents = 'none'
-    let interval = setInterval(() => {
-        progress++;
-        progText.innerHTML = progress + '%'
-        progressBar.style.width = progress + '%'
-        btn.innerHTML = 'Downloading'
-        displayText.innerHTML = 'The download is in progress.'
-    }, 100)
+    document.body.style.setProperty('--x', e.x + 'px');
+    document.body.style.setProperty('--y', e.y + 'px');
+});
 
+const h1 = document.querySelector('h1');
+const text = h1.innerText
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+let iteration = 0;
+
+function randomText(){
+    let str = text.split('').map((char, index) => {
+        if(index < iteration) {
+            return char
+        }
+        return characters[Math.floor(Math.random() * 53)]
+    }).join('');
+
+    h1.innerText = str
+
+    iteration += 0.25
+
+    console.log(str);
+
+    return str;
+}
+
+h1.addEventListener('mouseenter', () => {
+    console.log("hello");
+    let int = setInterval(randomText, 50);
     setTimeout(() => {
-        clearInterval(interval)
-        btn.innerHTML = 'Downloaded'
-        btn.style.opacity = 0.5
-        displayText.innerHTML = 'Downloading done.'
-    }, 10000)
+        iteration = 0
+        clearInterval(int)
+    }, text.length * 1000)
 })
+
