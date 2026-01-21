@@ -1,97 +1,89 @@
-import React from 'react';
-import UserInfoCard from './components/UserInfoCard';
+import React, { useState } from 'react';
+import Card from './components/Card';
 
 const App = () => {
-  const users = [
-    {
-      name: 'Aarav Sharma',
-      image: 'https://randomuser.me/api/portraits/men/32.jpg',
-      description:
-        'Tech enthusiast sharing daily coding tips and project ideas.',
-      likesCount: 1240,
-      followersCount: 980,
-      viewsCount: 15200,
-    },
-    {
-      name: 'Riya Mehta',
-      image: 'https://randomuser.me/api/portraits/women/44.jpg',
-      description:
-        'UI/UX designer focused on clean interfaces and smooth experiences.',
-      likesCount: 2310,
-      followersCount: 1870,
-      viewsCount: 26800,
-    },
-    {
-      name: 'Kabir Verma',
-      image: 'https://randomuser.me/api/portraits/men/56.jpg',
-      description: 'Full-stack developer building scalable web applications.',
-      likesCount: 980,
-      followersCount: 760,
-      viewsCount: 11900,
-    },
-    {
-      name: 'Ananya Iyer',
-      image: 'https://randomuser.me/api/portraits/women/68.jpg',
-      description:
-        'Content creator exploring tech, productivity, and learning.',
-      likesCount: 3120,
-      followersCount: 2450,
-      viewsCount: 40100,
-    },
-    {
-      name: 'Rohan Kulkarni',
-      image: 'https://randomuser.me/api/portraits/men/71.jpg',
-      description: 'Backend engineer passionate about APIs and databases.',
-      likesCount: 860,
-      followersCount: 640,
-      viewsCount: 9800,
-    },
-    {
-      name: 'Sneha Patil',
-      image: 'https://randomuser.me/api/portraits/women/25.jpg',
-      description:
-        'Aspiring data scientist sharing beginner-friendly insights.',
-      likesCount: 1740,
-      followersCount: 1320,
-      viewsCount: 21300,
-    },
-    {
-      name: 'Aditya Rao',
-      image: 'https://randomuser.me/api/portraits/men/18.jpg',
-      description:
-        'Mobile app developer working with iOS and Android platforms.',
-      likesCount: 1450,
-      followersCount: 1100,
-      viewsCount: 18750,
-    },
-    {
-      name: 'Neha Kapoor',
-      image: 'https://randomuser.me/api/portraits/women/52.jpg',
-      description: 'Tech blogger simplifying complex topics for beginners.',
-      likesCount: 2890,
-      followersCount: 2210,
-      viewsCount: 35600,
-    },
-    {
-      name: 'Vikram Singh',
-      image: 'https://randomuser.me/api/portraits/men/84.jpg',
-      description: 'DevOps learner automating workflows and deployments.',
-      likesCount: 720,
-      followersCount: 540,
-      viewsCount: 8600,
-    },
-    {
-      name: 'Pooja Nair',
-      image: 'https://randomuser.me/api/portraits/women/90.jpg',
-      description: 'Frontend developer crafting responsive and accessible UIs.',
-      likesCount: 1980,
-      followersCount: 1590,
-      viewsCount: 24400,
-    },
-  ];
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    setAllUsers([...allUsers, {username, imgURL, userRole, userDesc}])
+    
+    console.log('submitted');
+
+    setUsername('')
+    setImgURL('')
+    setUserRole('')
+    setUserDesc('')
+  };
+
+  const deleteHandler = (idx) => {
+    const users = [...allUsers]
+    users.splice(idx, 1)
+    setAllUsers(users)
+  }
+
+  const [username, setUsername] = useState('');
+  const [imgURL, setImgURL] = useState('');
+  const [userRole, setUserRole] = useState('');
+  const [userDesc, setUserDesc] = useState('');
+  const [allUsers, setAllUsers] = useState([]);
 
   return (
-    <UserInfoCard />
+    <div className='bg-black h-screen'>
+      <form
+        onSubmit={submitHandler}
+      >
+        <input
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+          className='border-2 border-red-200 text-white text-lg px-3 py-2 m-2 rounded-full'
+          type='text'
+          placeholder='Enter your name'
+        />
+
+        <input
+          value={imgURL}
+          onChange={(e) => {
+            setImgURL(e.target.value);
+          }}
+          className='border-2 border-red-200 text-white text-lg px-3 py-2 m-2 rounded-full'
+          type='text'
+          placeholder='Image URL'
+        />
+
+        <input
+          value={userRole}
+          onChange={(e) => {
+            setUserRole(e.target.value);
+          }}
+          className='border-2 border-red-200 text-white text-lg px-3 py-2 m-2 rounded-full'
+          type='text'
+          placeholder='Enter role'
+        />
+
+        <input
+          value={userDesc}
+          onChange={(e) => {
+            setUserDesc(e.target.value);
+          }}
+          className='border-2 border-red-200 text-white text-lg px-3 py-2 m-2 rounded-full'
+          type='text'
+          placeholder='Enter description'
+        />
+
+        <button className='text-gray-800 text-xl bg-red-300 px-3 py-2 w-fit rounded-full cursor-pointer hover:scale-97 active:scale-90 '>
+          Create User
+        </button>
+
+      </form>
+
+      <div className='flex flex-wrap'>
+        {allUsers.map((elem, idx) => <Card key={idx} idx={idx} elem={elem} deleteHandler={deleteHandler} />)}
+      </div>
+
+    </div>
   );
 };
 
