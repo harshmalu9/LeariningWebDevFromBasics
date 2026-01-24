@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 
 const App = () => {
+  const [num, setNum] = useState(0)
+  const [username, setUsername] = useState('')
 
-  const [user, setUser] = useState('harsh');
+  const getData = async () => {
+    const response = await axios.get('https://randomuser.me/api/')
+    setUsername(response.data.results[0].name.first + " " + response.data.results[0].name.last);
+    console.log(response.data.results[0].name.first + " " + response.data.results[0].name.last);
+  }
 
-  const btnClicked = () => {
-    console.log(user);
-    if(user === 'harsh') setUser('sakshi')
-    else setUser('harsh')
-    console.log(user);
-    
-  };
+
+  useEffect(function(){
+    getData()
+  }, [num])
 
   return (
-    <div className='h-screen bg-black text-white p-10'>
-      <div className='px-3 py-4 bg-gray-600 w-fit m-10 rounded-2xl'>
-        <h1 className='text-xl font-bold '>{user}</h1>
-      </div>
-      <button
-        onClick={btnClicked}
-        className='bg-red-400 px-3 py-5 rounded w-fit m-10 active:scale-95'
-      >
-        Change User
-      </button>
-    </div>
-  );
-};
+    <div>
+      <h1>{username}</h1>
+      <button onClick={() => {
+        setNum(num+1)
+      }}>Click Here to get user</button>
 
-export default App;
+    </div>
+  )
+}
+
+export default App
